@@ -1,16 +1,9 @@
-import { createHmac } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { request } from 'node:https';
 import { join } from 'node:path';
 import { env, exit } from 'node:process';
 
-const webhookUrl = env.WEBHOOK_URL;
-const secret = env.WEBHOOK_SECRET;
-
-if (!webhookUrl || !secret) {
-  console.error('Error: Missing environment variables.');
-  exit(1);
-}
+const webhookUrl = 'https://bot.w-eslley6456.workers.dev';
 
 const eventPath = env.GITHUB_EVENT_PATH;
 const eventData = JSON.parse(await readFile(eventPath, 'utf8'));
@@ -49,10 +42,6 @@ const payload = {
   comment: commentContent,
 };
 
-const signature = createHmac('sha256', secret)
-  .update(JSON.stringify(payload))
-  .digest('hex');
-
 const data = JSON.stringify(payload);
 const options = new URL(webhookUrl);
 
@@ -64,7 +53,6 @@ const req = request(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Hub-Signature-256': `sha256=${signature}`,
     },
   },
   (res) => {

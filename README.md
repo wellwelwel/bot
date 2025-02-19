@@ -78,7 +78,6 @@ Create a `.env` for each variable to use your server locally:
 ```sh
 APP_ID=''
 PORT=''
-WEBHOOK_SECRET=''
 ```
 
 Then, put your app `.pem` certificate in `./private-key.pem`.
@@ -90,7 +89,7 @@ Available **npm** scripts:
 
 - `dev` _(TypeScript Watch Mode)_
 
-Finally, set the `WEBHOOK_URL` secret on **GitHub** with your server URL, for example: `https://***.ngrok-free.app/webhook`.
+URL example: `https://***.ngrok-free.app/webhook`.
 
 ---
 
@@ -103,7 +102,7 @@ Run the commands:
 
 You can decide whether to use the certificate as a file or using the `PRIVATE_KEY` local variable secret, including the same local variables (secrets) mentioned in the local server step.
 
-Finally, set the `WEBHOOK_URL` secret on **GitHub** with your server URL, for example: `https://***/webhook`.
+URL example: `https://***/webhook`.
 
 ---
 
@@ -136,23 +135,19 @@ Then continue with the remaining secrets:
 
 ```
 wrangler secret put APP_ID
-wrangler secret put WEBHOOK_SECRET
 ```
 
 Now in your **Cloudflare** account, you can connect your repository to the **Cloudflare Workers** and use the command `npm run wangler:serve` to serve it for free.
 
-Finally, set the `WEBHOOK_URL` secret on **GitHub** with the Cloudflare URL, for example: `https://bot.***.workers.dev`.
+URL example: `https://bot.***.workers.dev`.
 
 ---
 
 ### ⚗️ GitHub Actions
 
-Create a **secret** for each variable to use your webhook, once the server has been deployed:
+Set you webhook URL in [**./scripts/dispatch_webhook.js**](./scripts/dispatch_webhook.js).
 
-- `WEBHOOK_SECRET`
-- `WEBHOOK_URL`
-
-To use versions, you can use Git tags:
+To publish in the marketplace, you can use **Git** tags:
 
 ```sh
 git tag -a v1 -m "feat: create my first app"
