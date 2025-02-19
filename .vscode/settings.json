@@ -11,5 +11,8 @@
   },
   "[markdown]": {
     "files.trimTrailingWhitespace": false
+  },
+  "files.associations": {
+    "wrangler.json": "jsonc"
   }
 }

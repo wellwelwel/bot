@@ -1,5 +1,5 @@
 {
-  "include": ["server"],
+  "include": ["server", "wangler", "worker-configuration.d.ts"],
   "exclude": ["scripts"],
   "compilerOptions": {
     "target": "ESNext",

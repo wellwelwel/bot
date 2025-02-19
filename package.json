@@ -19,8 +19,10 @@
   },
   "scripts": {
     "dev": "tsx --watch --env-file-if-exists=.env server/index.ts",
+    "wangler:dev": "wrangler dev",
     "build": "tsc",
     "serve": "node --env-file-if-exists=.env dist/index.js",
+    "wangler:serve": "wrangler deploy",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .github/workflows/*.yml ."
   },
@@ -32,10 +34,12 @@
     "fastify-raw-body": "^5.0.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250214.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@types/node": "^22.13.4",
     "prettier": "^3.5.1",
     "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "wrangler": "^3.109.2"
   }
 }
