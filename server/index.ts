@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { env } from 'node:process';
 import helmet from '@fastify/helmet';
 import fastifyRateLimit from '@fastify/rate-limit';
 import Fastify from 'fastify';
@@ -11,11 +12,13 @@ import { getAppToken, getInstallationId } from './services/get-token.js';
 import { validateSignature } from './services/hmac.js';
 import { isPayload, safePayload } from './services/validate-payload.js';
 
-const appId = String(process.env.APP_ID).trim();
+const appId = String(env.APP_ID).trim();
 const privateKeyPath = join('private-key.pem').trim();
-const privateKey = (await readFile(privateKeyPath, 'utf8')).trim();
-const port = Number(String(process.env.PORT).trim());
-const secret = String(process.env.WEBHOOK_SECRET).trim();
+const port = Number(String(env.PORT).trim());
+const secret = String(env.WEBHOOK_SECRET).trim();
+const privateKey =
+  env.PRIVATE_KEY?.replace(/\\n/gm, '\n') ||
+  (await readFile(privateKeyPath, 'utf8')).trim();
 
 const fastify = Fastify();
 

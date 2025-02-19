@@ -74,6 +74,21 @@ Then, put your app `.pem` certificate in `./private-key.pem`.
 - You can test your server locally using [**ngrok**](https://ngrok.com/) for free.
 - Once everything is your way, you can move up the server to the service you want.
 
+Available **npm** scripts:
+
+- `dev` _(TypeScript Watch Mode)_
+
+---
+
+### 🛜 Serve (Deploy)
+
+Run the commands:
+
+- `build` _(Compile to JavaScript)_
+- `serve` _(Serves the Server in Production)_
+
+You can decide whether to use the certificate as a file or using the `PRIVATE_KEY` local variable secret, including the same local variables (secrets) mentioned in the local server step.
+
 ---
 
 ### ⚗️ GitHub Actions
@@ -89,12 +104,6 @@ To use versions, you can use Git tags:
 git tag -a v1 -m "feat: create my first app"
 git push origin v1
 ```
-
-Available **npm** scripts:
-
-- `dev` _(TypeScript Watch Mode)_
-- `build` _(Compile to JavaScript)_
-- `serve` _(Serves the Server in Production)_
 
 ---
 
