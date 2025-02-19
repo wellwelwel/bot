@@ -1,6 +1,6 @@
 # 🌀 wellwelwel [bot]
 
-A personal **GitHub Action** + server to dispatch a bot to comment on external contributions _(forks)_ to projects I maintain in my profile.
+A personal **GitHub Action** + server to dispatch a bot to comment on external contributions _(forks)_ to projects I maintain in my profile...
 
 Feel free to fork it and create your own bot _(see bellow)_ ✨
 
