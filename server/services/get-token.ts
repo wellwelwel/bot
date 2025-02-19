@@ -24,20 +24,12 @@ export const getInstallationId = async (options: {
   const jwt = (await auth({ type: 'app' })).token;
   const url = `https://api.github.com/repos/${owner}/${repo}/installation`;
 
-  console.log(url);
-
   const response = await fetch(url, {
     method: 'GET',
     headers: getHeaders(jwt),
   });
 
   const data = (await response.json()) as { id: number };
-
-  console.log('GitHub:', JSON.stringify(data, null, 2));
-
-  if (!response.ok) {
-    console.error('GitHub API:', response.status, data);
-  }
 
   return data.id;
 };
