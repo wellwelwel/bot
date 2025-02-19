@@ -1,5 +1,7 @@
 # 🌀 wellwelwel [bot]
 
+> 🚧 **WIP**.
+
 Create a personal **GitHub Action** + free server to dispatch a bot to comment on external contributions _(forks)_.
 
 Feel free to fork it and create your own bot _(see bellow)_ ✨
@@ -11,11 +13,19 @@ Feel free to fork it and create your own bot _(see bellow)_ ✨
 ### Commenting directly from the workflow
 
 ```yml
-- name: wellwelwel-bot
-  uses: wellwelwel/bot@v1
-  with:
-    update-if-includes: '<!-- BOT-COMMENT -->'
-    comment: 'Hey, @user! <!-- BOT-COMMENT -->'
+name: Testing
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: wellwelwel-bot
+        uses: wellwelwel/bot@v1.0.0
+        with:
+          update-if-includes: '<!-- BOT-COMMENT -->'
+          comment: 'Hey, @user! <!-- BOT-COMMENT -->'
 ```
 
 ### Commenting using a markdown file
