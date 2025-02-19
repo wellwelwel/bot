@@ -1,0 +1,41 @@
+{
+  "name": "wellwelwel-bot",
+  "private": true,
+  "type": "module",
+  "description": "A personal GitHub Action + server to dispatch a bot to comment on external contributions (forks) to projects I maintain in my profile (feel free to fork and create your own bot) ✨",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wellwelwel/bot.git"
+  },
+  "homepage": "https://weslley.io",
+  "bugs": {
+    "url": "https://github.com/wellwelwel/bot/issues"
+  },
+  "author": "https://github.com/wellwelwel",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/wellwelwel"
+  },
+  "scripts": {
+    "dev": "tsx --watch --env-file-if-exists=.env server/index.ts",
+    "build": "tsc",
+    "serve": "node --env-file-if-exists=.env dist/index.js",
+    "lint": "prettier --check .",
+    "lint:fix": "prettier --write .github/workflows/*.yml ."
+  },
+  "dependencies": {
+    "@fastify/helmet": "^13.0.1",
+    "@fastify/rate-limit": "^10.2.2",
+    "@octokit/auth-app": "^7.1.5",
+    "fastify": "^5.2.1",
+    "fastify-raw-body": "^5.0.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+    "@types/node": "^22.13.4",
+    "prettier": "^3.5.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

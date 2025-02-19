@@ -1,0 +1,23 @@
+name: 'wellwelwel-bot'
+description: 'A personal GitHub Action + server to dispatch a bot to comment on external contributions (forks) to projects I maintain in my profile (feel free to fork and create your own bot) ✨'
+author: 'wellwelwel'
+branding:
+  icon: 'layers'
+  color: 'blue'
+
+inputs:
+  update-if-includes:
+    description: 'Text that, if found in an existing bot comment, will update it instead of creating a new one.'
+    required: false
+
+  comment:
+    description: 'Comment content (Markdown format).'
+    required: false
+
+  comment-from-file:
+    description: 'Path to a markdown file containing the comment content.'
+    required: false
+
+runs:
+  using: 'node20'
+  main: 'scripts/dispatch_webhook.js'

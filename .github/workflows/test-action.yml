@@ -1,0 +1,39 @@
+name: Comment tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Dispatch
+        uses: ./
+        with:
+          update-if-includes: '<!-- BOT-COMMENT -->'
+          comment: 'Hey, @user! <!-- BOT-COMMENT -->'
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+
+  test-comment-from-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Debugging
+        run: ls -lah
+
+      - name: Dispatch
+        uses: ./
+        with:
+          update-if-includes: '<!-- BOT-COMMENT-FILE -->'
+          comment-from-file: './fixtures/comment-file.md'
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
