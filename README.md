@@ -1,6 +1,6 @@
 # 🌀 wellwelwel [bot]
 
-A personal **GitHub Action** + server to dispatch a bot to comment on external contributions _(forks)_ to projects I maintain in my profile.
+Create a personal **GitHub Action** + free server to dispatch a bot to comment on external contributions _(forks)_.
 
 Feel free to fork it and create your own bot _(see bellow)_ ✨
 
@@ -35,7 +35,9 @@ Hey, @user _(from a file)_! <!-- BOT-COMMENT-FILE -->
 ```
 
 > [!TIP]
-> If you text `@user`, it will be replaced by the current user that opened the Pull Request.
+>
+> - If you text `@user`, it will be replaced by the current user that opened the Pull Request.
+> - Continue to the documentation to learn how to create your own Action.
 
 ---
 
@@ -78,9 +80,11 @@ Available **npm** scripts:
 
 - `dev` _(TypeScript Watch Mode)_
 
+Finally, set the `WEBHOOK_URL` secret on **GitHub** with your server URL, for example: `https://***.ngrok-free.app/webhook`.
+
 ---
 
-### 🛜 Serve (Deploy)
+### 🛜 Serve — Easy, but Paid (Azure, VPS, EC2, etc.)
 
 Run the commands:
 
@@ -88,6 +92,46 @@ Run the commands:
 - `serve` _(Serves the Server in Production)_
 
 You can decide whether to use the certificate as a file or using the `PRIVATE_KEY` local variable secret, including the same local variables (secrets) mentioned in the local server step.
+
+Finally, set the `WEBHOOK_URL` secret on **GitHub** with your server URL, for example: `https://***/webhook`.
+
+---
+
+### 🌥️ Wangler (Cloudflare Workers)
+
+First, convert your PKCS#1 private key (generated from **GitHub**) to PKCS#8:
+
+```sh
+openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in private-key.pem -out private-key-pkcs8.pem
+```
+
+The private key needs to be tailored to a single line. Let's copy it to clipboard:
+
+```sh
+# Unix
+awk 'NF {sub(/\r/, ""); printf "%s\\n", $0;}' private-key-pkcs8.pem | pbcopy
+
+# Windows
+(Get-Content private-key-pkcs8.pem) -join "`n" | Set-Clipboard
+```
+
+Now, we can set the secrets:
+
+```sh
+# Press `Enter` and paste the content from the clipboard (previous command)
+wrangler secret put PRIVATE_KEY
+```
+
+Then continue with the remaining secrets:
+
+```
+wrangler secret put APP_ID
+wrangler secret put WEBHOOK_SECRET
+```
+
+Now in your **Cloudflare** account, you can connect your repository to the **Cloudflare Workers** and use the command `npm run wangler:serve` to serve it for free.
+
+Finally, set the `WEBHOOK_URL` secret on **GitHub** with the Cloudflare URL, for example: `https://bot.***.workers.dev`.
 
 ---
 
