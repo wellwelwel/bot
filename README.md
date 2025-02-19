@@ -1,7 +1,5 @@
 # 🌀 wellwelwel [bot]
 
-> 🚧 **WIP**.
-
 Create a personal **GitHub Action** + free server to dispatch a bot to comment on external contributions _(forks)_.
 
 Feel free to fork it and create your own bot _(see bellow)_ ✨
@@ -187,4 +185,4 @@ Now when you create your first Pull Request within your fork, you'll see a comme
 > [!TIP]
 > Doing this process while listening to your favorite playlist can make the challenge more interesting 🎧
 
-With love, [**Weslley**](https://github.com/wellwelwel) 💙
+Made with Love 💙
